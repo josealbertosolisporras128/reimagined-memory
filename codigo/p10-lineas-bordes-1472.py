@@ -49,15 +49,21 @@ cv2.imshow("Esquinas Detectadas (Loro) - 1472", resultado)
 carpeta_resultados = os.path.join(script_dir, "..", "resultados")
 os.makedirs(carpeta_resultados, exist_ok=True)
 
-# Guardar la imagen con las esquinas marcadas
-ruta_guardado = os.path.join(carpeta_resultados, "ejemplo2_esquinas.jpg")
-cv2.imwrite(ruta_guardado, resultado)
+# 1. Guardar la imagen original
+ruta_original = os.path.join(carpeta_resultados, "loro_original_1472.jpg")
+cv2.imwrite(ruta_original, imagen)
 
-# Mostrar contadores en consola
+# 2. Guardar la imagen con las esquinas detectadas
+ruta_resultado = os.path.join(carpeta_resultados, "ejemplo2_esquinas_1472.jpg")
+cv2.imwrite(ruta_resultado, resultado)
+
+# Mostrar contadores y confirmación en consola
 cantidad_esquinas = np.sum(esquinas > umbral)
 print("Detección de esquinas terminada.")
 print(f"Cantidad aproximada de puntos detectados: {cantidad_esquinas}")
-print(f"Resultado guardado en: {os.path.abspath(ruta_guardado)}")
+print("Imágenes guardadas en la carpeta 'resultados':")
+print(f" - Original: {os.path.abspath(ruta_original)}")
+print(f" - Resultado: {os.path.abspath(ruta_resultado)}")
 
 # Esperar interacción de teclado para salir
 cv2.waitKey(0)
